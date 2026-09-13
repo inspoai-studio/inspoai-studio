@@ -2,10 +2,12 @@
 
 # Inspo AI Studio
 
-**The Open-Source Design Intelligence, UI and Web Generation & Agentic UI Platform**
-<h1>
-  <a href="https://www.inspoai.io/">Visit</a>
+<h1 style={{ fontWeight: 700 }}>
+  The Open-Source Design Intelligence, UI and Web Generation & Agentic UI Platform
 </h1>
+<h3>
+  <a href="https://www.inspoai.io/">Visit Inspoai</a>
+</h3>
 
 Explore visual references, collaborate on real-time moodboards, scan brand design systems, and generate production-ready React components with AI.
 
