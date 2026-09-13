@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🎨 Inspo AI Studio
+# Inspo AI Studio
 
 **The Open-Source Design Intelligence & Agentic UI Platform**
 
@@ -19,18 +19,18 @@ Explore visual references, collaborate on real-time moodboards, scan brand desig
 
 ---
 
-## ✨ Key Features
+## Key Features
 
-- **🔍 Multi-Source Design Intelligence**: Search curated web layouts, mobile app screens, visual graphics (Pinterest, Google, Freepik), and SVG icons in a single unified interface.
-- **📌 Collaborative Moodboard Studio**: Infinite canvas with draggable cards, image uploads, visual connection edges, and real-time multiplayer cursor synchronization via WebSockets.
-- **🌐 Titan Brand Scanner**: Deep website scanner that extracts complete design systems in seconds — typography, color palettes, spacing tokens, logos, and UI component screenshots.
+- **Multi-Source Design Intelligence**: Search curated web layouts, mobile app screens, visual graphics (Pinterest, Google, Freepik), and SVG icons in a single unified interface.
+- **Collaborative Moodboard Studio**: Infinite canvas with draggable cards, image uploads, visual connection edges, and real-time multiplayer cursor synchronization via WebSockets.
+- **Titan Brand Scanner**: Deep website scanner that extracts complete design systems in seconds — typography, color palettes, spacing tokens, logos, and UI component screenshots.
 - **⚡ Agentic UI Generation**: Prompt-to-component React sandbox with automatic Lucide icon healing, Babel syntax sanitization, and live interactive previews.
-- **🤖 Native Model Context Protocol (MCP)**: Built-in MCP server (`/api/mcp/sse`) allowing Claude Desktop, Cursor, and IDE coding agents to search design references and pull components directly into their context.
-- **🛡️ Battle-Tested Security**: Comprehensive Row-Level Security (RLS), SSRF protection on scrapers, and automated input safety moderation.
+- **Native Model Context Protocol (MCP)**: Built-in MCP server (`/api/mcp/sse`) allowing Claude Desktop, Cursor, and IDE coding agents to search design references and pull components directly into their context.
+- **Battle-Tested Security**: Comprehensive Row-Level Security (RLS), SSRF protection on scrapers, and automated input safety moderation.
 
 ---
 
-## 🏗 Monorepo Architecture
+## Monorepo Architecture
 
 Inspo AI Studio is structured as an npm workspaces monorepo:
 
@@ -65,7 +65,7 @@ inspoai-studio/
 
 ---
 
-## 🚀 Quickstart
+## Quickstart
 
 ### Prerequisites
 - [Node.js](https://nodejs.org/) `>= 20.18.1`
@@ -102,7 +102,7 @@ npm run dev
 
 ---
 
-## 🗄 1-Click Database Setup
+## 1-Click Database Setup
 
 Inspo AI Studio uses PostgreSQL with `pgvector` hosted on Supabase.
 
@@ -121,7 +121,7 @@ The unified schema sets up:
 
 ---
 
-## 🧪 Testing & Verification
+## Testing & Verification
 
 Run the automated test suite and verify the production build:
 
@@ -135,7 +135,7 @@ npm run build:frontend
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions from the design and developer community! Please review our:
 - [Contributing Guide](./CONTRIBUTING.md)
@@ -144,6 +144,6 @@ We welcome contributions from the design and developer community! Please review 
 
 ---
 
-## 📄 License
+## License
 
 Inspo AI Studio is open-source software licensed under the [Apache License, Version 2.0](./LICENSE).
