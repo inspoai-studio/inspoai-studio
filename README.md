@@ -11,7 +11,9 @@
 
 Explore visual references, collaborate on real-time moodboards, scan brand design systems, and generate production-ready React components with AI.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/bPSyjoKeM8s?si=3-2o9cBJBple3zkt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<a href="https://www.youtube.com/watch?v=bPSyjoKeM8s">
+  <img src="https://img.youtube.com/vi/bPSyjoKeM8s/maxresdefault.jpg" width="560" alt="Inspo AI Studio demo">
+</a>
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](./LICENSE)
 [![Node.js](https://img.shields.io/badge/Node.js-%3E%3D20.18-brightgreen.svg)](https://nodejs.org)
