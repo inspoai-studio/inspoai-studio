@@ -49,7 +49,7 @@ Explore visual references, collaborate on real-time moodboards, scan brand desig
 
 <details>
 <summary>Agentic UI — prompt to UI</summary>
-<img width="389" height="486" alt="Inspo AI Studio interface" src="https://github.com/user-attachments/assets/2210de14-7be4-4b32-9eed-e31d8cdbf88c" />
+<img width="389" height="486" alt="image" src="https://github.com/user-attachments/assets/febc6261-9549-48ba-abdb-b81e856b0f49" />
 </details>
 
 <details>
