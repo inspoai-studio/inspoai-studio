@@ -54,7 +54,7 @@ Explore visual references, collaborate on real-time moodboards, scan brand desig
 
 <details>
 <summary>AI UI usually looks smart</summary>
-<img width="1542" height="1927" alt="Agentic UI generation view" src="https://github.com/user-attachments/assets/3c54c2ff-2a8f-42fa-b7dd-bc58bdb8dd7d" />
+<img width="389" height="486" alt="Agentic UI generation view" src="https://github.com/user-attachments/assets/3c54c2ff-2a8f-42fa-b7dd-bc58bdb8dd7d" />
 </details>
 
 ---
