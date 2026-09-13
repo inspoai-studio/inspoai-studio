@@ -12,7 +12,7 @@
 Explore visual references, collaborate on real-time moodboards, scan brand design systems, and generate production-ready React components with AI.
 
 <a href="https://www.youtube.com/watch?v=bPSyjoKeM8s">
-  <img src="https://img.youtube.com/vi/bPSyjoKeM8s/maxresdefault.jpg" width="560" alt="Inspo AI Studio demo">
+  <img src="./assets/demo-thumbnail.png" width="720" alt="Inspo AI: from prompt to production-ready design">
 </a>
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](./LICENSE)
