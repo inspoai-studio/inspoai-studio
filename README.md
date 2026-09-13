@@ -24,7 +24,7 @@ Explore visual references, collaborate on real-time moodboards, scan brand desig
 - **Multi-Source Design Intelligence**: Search curated web layouts, mobile app screens, visual graphics (Pinterest, Google, Freepik), and SVG icons in a single unified interface.
 - **Collaborative Moodboard Studio**: Infinite canvas with draggable cards, image uploads, visual connection edges, and real-time multiplayer cursor synchronization via WebSockets.
 - **Titan Brand Scanner**: Deep website scanner that extracts complete design systems in seconds — typography, color palettes, spacing tokens, logos, and UI component screenshots.
-- **⚡ Agentic UI Generation**: Prompt-to-component React sandbox with automatic Lucide icon healing, Babel syntax sanitization, and live interactive previews.
+- **Agentic UI Generation**: Prompt-to-component React sandbox with automatic Lucide icon healing, Babel syntax sanitization, and live interactive previews.
 - **Native Model Context Protocol (MCP)**: Built-in MCP server (`/api/mcp/sse`) allowing Claude Desktop, Cursor, and IDE coding agents to search design references and pull components directly into their context.
 - **Battle-Tested Security**: Comprehensive Row-Level Security (RLS), SSRF protection on scrapers, and automated input safety moderation.
 
