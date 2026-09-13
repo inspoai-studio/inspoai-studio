@@ -1,0 +1,232 @@
+/* ══════════════════════════════════════════
+   Trial Banner — Matches InspoAI design
+   ══════════════════════════════════════════ */
+
+/* ── Active Trial Banner (inline, not fixed) ── */
+.trial-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    margin: 0;
+    font-size: 13px;
+    font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    background: #fff;
+    z-index: 100;
+    animation: trialSlideDown 0.25s ease;
+}
+
+@keyframes trialSlideDown {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── State Variants ── */
+.trial-banner-default {
+    background: #fff;
+    border-bottom-color: rgba(0, 0, 0, 0.06);
+}
+
+.trial-banner-default .trial-banner-dot {
+    background: #10b981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+}
+
+.trial-banner-amber {
+    background: #fffcf5;
+    border-bottom-color: rgba(217, 119, 6, 0.1);
+}
+
+.trial-banner-amber .trial-banner-dot {
+    background: #f59e0b;
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
+    animation: dotPulse 2s ease-in-out infinite;
+}
+
+.trial-banner-red {
+    background: #fef7f7;
+    border-bottom-color: rgba(239, 68, 68, 0.1);
+}
+
+.trial-banner-red .trial-banner-dot {
+    background: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+    animation: dotPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15); }
+    50% { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0.08); }
+}
+
+/* ── Layout ── */
+.trial-banner-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.trial-banner-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.trial-banner-text {
+    color: #444;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+}
+
+.trial-banner-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.trial-banner-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 14px;
+    border: 1px solid #111;
+    border-radius: 8px;
+    background: #111;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s ease;
+    letter-spacing: -0.01em;
+}
+
+.trial-banner-cta:hover {
+    background: #333;
+    border-color: #333;
+}
+
+.trial-banner-dismiss {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 6px;
+    color: #ccc;
+    display: flex;
+    align-items: center;
+    transition: color 0.15s, background 0.15s;
+}
+
+.trial-banner-dismiss:hover {
+    color: #666;
+    background: rgba(0, 0, 0, 0.04);
+}
+
+/* ── Expired Overlay (full-screen block) ── */
+.trial-expired-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: trialFadeIn 0.3s ease;
+}
+
+@keyframes trialFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.trial-expired-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 48px 44px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06), 0 24px 80px rgba(0, 0, 0, 0.08);
+    animation: trialCardUp 0.4s ease;
+}
+
+@keyframes trialCardUp {
+    from { transform: translateY(16px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.trial-expired-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: #f5f5f5;
+    color: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.trial-expired-card h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111;
+    margin: 0 0 10px;
+    letter-spacing: -0.02em;
+}
+
+.trial-expired-card p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    margin: 0 0 24px;
+}
+
+.trial-upgrade-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 10px;
+    background: #111;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, sans-serif;
+    transition: background 0.15s, transform 0.15s;
+    letter-spacing: -0.01em;
+}
+
+.trial-upgrade-btn:hover {
+    background: #333;
+    transform: translateY(-1px);
+}
+
+.trial-expired-subtext {
+    font-size: 12px !important;
+    color: #aaa !important;
+    margin-top: 12px !important;
+    margin-bottom: 0 !important;
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+    .trial-banner {
+        font-size: 12px;
+        padding: 8px 14px;
+    }
+    .trial-banner-cta {
+        font-size: 11px;
+        padding: 4px 10px;
+    }
+    .trial-expired-card {
+        padding: 32px 24px;
+    }
+}

@@ -1,0 +1,64 @@
+{
+  "name": "inspoai-backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node --no-warnings server.js",
+    "dev": "nodemon --exec \"node --no-warnings server.js\"",
+    "build": "echo 'No build step required'",
+    "test": "node tests/run_tests.js"
+  },
+  "engines": {
+    "node": ">=20.18.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "Apache-2.0",
+  "description": "",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "@modelcontextprotocol/sdk": "^1.27.1",
+    "@pinecone-database/pinecone": "^4.1.0",
+    "@supabase/supabase-js": "^2.95.3",
+    "axios": "^1.8.4",
+    "bcrypt": "^6.0.0",
+    "cheerio": "^1.0.0",
+    "cloudinary": "^2.9.0",
+    "color": "^5.0.0",
+    "compression": "^1.8.1",
+    "compromise": "^14.14.4",
+    "cors": "^2.8.6",
+    "cross-fetch": "^4.1.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.22.1",
+    "express-rate-limit": "^8.2.1",
+    "firebase": "^11.7.1",
+    "firebase-admin": "^13.4.0",
+    "google-auth-library": "^10.6.1",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.2",
+    "natural": "^8.0.1",
+    "node-cache": "^5.1.2",
+    "node-cron": "^4.2.1",
+    "node-fetch": "^3.3.2",
+    "nodemailer": "^9.0.1",
+    "openai": "^6.25.0",
+    "puppeteer-core": "^24.11.2",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "resend": "^6.9.4",
+    "sharp": "^0.34.5",
+    "socket.io": "^4.8.1",
+    "synonyms": "^1.0.1",
+    "ua-parser-js": "^2.0.9",
+    "user-agents": "^1.1.502",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  },
+  "optionalDependencies": {
+    "@img/sharp-darwin-arm64": "^0.34.5"
+  }
+}

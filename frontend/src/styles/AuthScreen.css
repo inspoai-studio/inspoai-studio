@@ -1,0 +1,386 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   InspoAI — Auth / Login page
+   White mode, two-panel layout
+───────────────────────────────────────────────────────────────────────────── */
+
+
+
+/* ── Root ──────────────────────────────────────────────────────────────────── */
+.auth-root {
+  display: flex;
+  /* right panel is first in DOM but shown on right — use row-reverse */
+  flex-direction: row-reverse;
+  min-height: 100vh;
+  background: #fff;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Left panel ────────────────────────────────────────────────────────────── */
+.auth-left {
+  flex: 1;
+  background: #fafafa;
+  border-right: 1px solid #ebebeb;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  overflow: hidden;
+}
+
+/* Subtle dot-grid background */
+.auth-left__grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, #c8c8c8 1.5px, transparent 1.5px);
+  background-size: 28px 28px;
+  background-position: var(--dx, 0px) var(--dy, 0px);
+  opacity: 0.55;
+  pointer-events: none;
+  transition: background-position 0.12s ease-out;
+}
+
+.auth-left__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 420px;
+  width: 100%;
+}
+
+.auth-left__logo img {
+  height: 32px;
+  width: auto;
+}
+
+/* ── Testimonial card ──────────────────────────────────────────────────────── */
+.auth-testimonial {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 20px;
+  padding: 32px 36px;
+  box-shadow:
+    0 1px 2px rgba(0,0,0,0.04),
+    0 8px 40px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-testimonial__stars {
+  display: flex;
+  gap: 3px;
+}
+
+.auth-testimonial__highlight {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #0a0a0b;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.auth-testimonial__body {
+  margin: 0;
+  font-size: 15px;
+  color: #555;
+  line-height: 1.65;
+  font-weight: 400;
+}
+
+.auth-testimonial__author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 4px;
+  padding-top: 16px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.auth-testimonial__avatar-link {
+  flex-shrink: 0;
+  display: block;
+  border-radius: 50%;
+  transition: opacity 0.15s;
+}
+
+.auth-testimonial__avatar-link:hover { opacity: 0.85; }
+
+.auth-testimonial__avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #e8e8e8;
+  display: block;
+}
+
+.auth-testimonial__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.auth-testimonial__name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111;
+}
+
+.auth-testimonial__title {
+  font-size: 12px;
+  color: #888;
+  font-weight: 400;
+}
+
+.auth-left__tagline {
+  margin: 0;
+  font-size: 13px;
+  color: #aaa;
+  text-align: center;
+  letter-spacing: 0.01em;
+}
+
+/* ── Right panel ───────────────────────────────────────────────────────────── */
+.auth-right {
+  width: 480px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 56px;
+  background: #fff;
+}
+
+.auth-form {
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* Logo is always shown above title in the right panel */
+.auth-form__logo {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 4px;
+}
+
+.auth-form__logo img {
+  height: 34px;
+  width: auto;
+}
+
+/* Remove old mobile-only logo rule */
+.auth-form__logo--mobile {
+  display: none;
+}
+
+.auth-form__hgroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.auth-form__title {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #0a0a0b;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+/* Social proof row: avatars + text side by side */
+.auth-social-proof {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.auth-avatars {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.auth-avatars__img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+  margin-left: -8px;
+  transition: transform 0.15s ease;
+}
+
+.auth-avatars__img:first-child { margin-left: 0; }
+.auth-avatars__img:hover { transform: translateY(-2px); z-index: 10 !important; }
+
+.auth-form__sub {
+  margin: 0;
+  font-size: 15px;
+  color: #777;
+  font-weight: 400;
+}
+
+/* ── Google button ─────────────────────────────────────────────────────────── */
+.auth-google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 13px 20px;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 12px;
+  background: #fff;
+  color: #111;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  letter-spacing: -0.01em;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.auth-google-btn:hover:not(:disabled) {
+  border-color: #c0c0c0;
+  background: #fafafa;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.09);
+  transform: translateY(-1px);
+}
+
+.auth-google-btn:active { transform: translateY(0); }
+.auth-google-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* ── Error ─────────────────────────────────────────────────────────────────── */
+.auth-error {
+  background: #fff5f5;
+  border: 1px solid #ffd7d7;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 13px;
+  color: #c0392b;
+  line-height: 1.5;
+}
+
+/* ── Free features list ────────────────────────────────────────────────────── */
+.auth-features {
+  list-style: none;
+  margin: 0;
+  padding: 14px 16px;
+  background: #f8f9ff;
+  border: 1px solid #e8ecff;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.auth-features__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13.5px;
+  color: #444;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.auth-features__icon {
+  flex-shrink: 0;
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+}
+
+/* ── Trustpilot badge ──────────────────────────────────────────────────────── */
+.trustpilot-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 0 2px;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.trustpilot-badge:hover {
+  opacity: 0.75;
+}
+
+.trustpilot-badge__rating {
+  font-size: 16px;
+  font-weight: 700;
+  color: #191919;
+  letter-spacing: -0.02em;
+}
+
+.trustpilot-badge__sep {
+  font-size: 13px;
+  color: #999;
+  font-weight: 400;
+}
+
+.trustpilot-badge__logo {
+  height: 56px;
+  width: auto;
+  margin-top: 1px;
+  object-fit: contain;
+}
+
+.auth-form__terms {
+  margin: 0;
+  font-size: 12px;
+  color: #aaa;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.auth-form__terms a {
+  color: #666;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.15s;
+}
+
+.auth-form__terms a:hover { color: #111; }
+
+/* ── Responsive ────────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  /* On mobile, stack vertically — right (login) is first in DOM so it shows on top */
+  .auth-root { flex-direction: column; }
+
+  .auth-left {
+    border-right: none;
+    border-top: 1px solid #ebebeb;
+    padding: 40px 24px;
+    flex: none;
+  }
+
+  /* Hide desktop logo on left, show in form already */
+  .auth-left__logo { display: none; }
+
+  .auth-right {
+    width: 100%;
+    padding: 40px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-right { padding: 32px 20px; }
+  .auth-testimonial { padding: 24px; }
+  .auth-testimonial__highlight { font-size: 19px; }
+  .auth-form__title { font-size: 24px; }
+}

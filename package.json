@@ -1,0 +1,19 @@
+{
+  "name": "inspoai-studio",
+  "version": "1.0.0",
+  "description": "Inspo AI Studio — Unified Monorepo for Frontend and Backend",
+  "private": true,
+  "license": "Apache-2.0",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev:frontend": "npm run dev --workspace=frontend",
+    "dev:backend": "npm run dev --workspace=backend",
+    "build:frontend": "npm run build --workspace=frontend",
+    "build:backend": "npm run build --workspace=backend",
+    "test:backend": "npm run test --workspace=backend",
+    "install:all": "npm install --workspaces"
+  }
+}

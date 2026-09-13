@@ -1,0 +1,483 @@
+/* ── UIScreenPanel — Light mode, sidebar-aware split layout ── */
+
+/* Hide the floating bottom SearchBar while panel is open */
+body.ui-panel-open .search-content-bottom {
+    display: none !important;
+}
+
+/* Backdrop — starts AFTER the 88px sidebar */
+.ui-panel-backdrop {
+    position: fixed;
+    top: 0;
+    left: 88px;
+    /* sidebar collapsed width */
+    bottom: 0;
+    z-index: 10000;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(4px);
+    animation: panelBackdropIn 0.2s ease;
+}
+
+@keyframes panelBackdropIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* ── Outer container — same offset as backdrop ── */
+.ui-panel {
+    position: fixed;
+    top: 0;
+    left: 88px;
+    /* sidebar collapsed width */
+    right: 0;
+    bottom: 0;
+    z-index: 10001;
+    display: flex;
+    animation: panelFadeIn 0.25s ease;
+}
+
+@keyframes panelFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ── LEFT: image area (click to close) ── */
+.ui-panel-image-side {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 32px;
+    cursor: pointer;
+}
+
+.ui-panel-image-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ui-panel-image-side img {
+    max-width: 100%;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    border-radius: 14px;
+    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.5);
+    display: block;
+    object-fit: contain;
+    animation: imgSlideUp 0.3s cubic-bezier(0.34, 1.06, 0.64, 1);
+    cursor: default;
+    /* don't show pointer on image itself */
+}
+
+@keyframes imgSlideUp {
+    from {
+        transform: translateY(14px);
+        opacity: 0.6;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+.img-loading {
+    filter: blur(4px) brightness(0.95);
+    transition: filter 0.3s ease;
+}
+
+.ui-panel-hd-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    padding: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.ui-spinner {
+    width: 28px;
+    height: 28px;
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    border-top-color: #111;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ── RIGHT: light metadata panel ── */
+.ui-panel-right {
+    width: 380px;
+    flex-shrink: 0;
+    background: #ffffff;
+    border-left: 1px solid rgba(0, 0, 0, 0.07);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: -8px 0 40px rgba(0, 0, 0, 0.12);
+    animation: panelSlideIn 0.3s cubic-bezier(0.34, 1.06, 0.64, 1);
+}
+
+@keyframes panelSlideIn {
+    from {
+        transform: translateX(32px);
+        opacity: 0.6;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Scrollable area */
+.ui-panel-scroll {
+    flex: 1;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #e0e0e0 transparent;
+}
+
+.ui-panel-scroll::-webkit-scrollbar {
+    width: 4px;
+}
+
+.ui-panel-scroll::-webkit-scrollbar-thumb {
+    background: #e0e0e0;
+    border-radius: 2px;
+}
+
+/* Close row */
+.ui-panel-close {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 14px 16px 0;
+    background: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
+
+.ui-panel-close-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #f2f2f7;
+    border: none;
+    color: #555;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, color 0.15s;
+}
+
+.ui-panel-close-btn:hover {
+    background: #e5e5ea;
+    color: #111;
+}
+
+/* ── App header ── */
+.ui-panel-app-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px 14px;
+    border-bottom: 1px solid #f0f0f5;
+}
+
+.ui-panel-favicon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    background: #f5f5f7;
+    object-fit: contain;
+}
+
+.ui-panel-app-info {
+    min-height: 0;
+}
+
+
+.ui-panel-app-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1d1d1f;
+    line-height: 1.2;
+    font-family: var(--font-sans);
+}
+
+.ui-panel-app-domain {
+    font-size: 12px;
+    color: #999;
+    margin-top: 2px;
+    font-family: var(--font-sans);
+}
+
+/* ── Metadata body ── */
+.ui-panel-body {
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.ui-panel-section {
+    min-height: 0;
+}
+
+.ui-panel-section-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 9px;
+    font-family: var(--font-sans);
+}
+
+.ui-panel-section-label svg {
+    flex-shrink: 0;
+    color: #bbb;
+}
+
+/* Pill chips — light style matching Inspo AI */
+.ui-panel-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.ui-panel-chip {
+    display: inline-block;
+    padding: 5px 13px;
+    border-radius: 20px;
+    background: #f2f2f7;
+    border: 1px solid transparent;
+    font-size: 12px;
+    font-weight: 500;
+    color: #1d1d1f;
+    line-height: 1.4;
+    cursor: default;
+    font-family: var(--font-sans);
+    transition: background 0.15s, border-color 0.15s;
+}
+
+.ui-panel-chip:hover {
+    background: #e5e5ea;
+    border-color: rgba(0, 0, 0, 0.06);
+}
+
+/* Color swatches */
+.ui-panel-colors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.ui-panel-color-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: #f5f5f7;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 20px;
+    padding: 4px 10px 4px 5px;
+    cursor: default;
+}
+
+.ui-panel-color-dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.ui-panel-color-hex {
+    font-size: 11px;
+    font-family: 'SF Mono', 'Menlo', monospace;
+    color: #555;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+/* ── More from section ── */
+.ui-panel-more-section {
+    padding: 0 20px 16px;
+    border-top: 1px solid #f0f0f5;
+}
+
+.ui-panel-more-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 16px 0 10px;
+    font-family: var(--font-sans);
+}
+
+.ui-panel-more-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+}
+
+.ui-panel-more-thumb {
+    aspect-ratio: 16 / 10;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #f5f5f7;
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+}
+
+.ui-panel-more-thumb:hover {
+    border-color: rgba(0, 0, 0, 0.15);
+    transform: scale(1.03);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.ui-panel-more-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ── Sticky action buttons ── */
+.ui-panel-actions {
+    padding: 12px 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-top: 1px solid #f0f0f5;
+    background: #fff;
+}
+
+.ui-panel-btn-primary {
+    width: 100%;
+    padding: 13px;
+    border-radius: 12px;
+    border: none;
+    background: #1d1d1f;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: var(--font-sans);
+    transition: background 0.15s, transform 0.1s;
+}
+
+.ui-panel-btn-primary:hover {
+    background: #333;
+    transform: translateY(-1px);
+}
+
+.ui-panel-btn-primary.selected {
+    background: #06cf9c;
+}
+
+.ui-panel-btn-secondary {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    background: transparent;
+    color: #1d1d1f;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: var(--font-sans);
+    transition: background 0.15s, border-color 0.15s;
+}
+
+.ui-panel-btn-secondary:hover {
+    background: #f5f5f7;
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* ── Responsive: tablets and smaller ── */
+@media (max-width: 900px) {
+
+    .ui-panel-backdrop,
+    .ui-panel {
+        left: 0;
+        /* no sidebar on mobile */
+    }
+
+    .ui-panel {
+        flex-direction: column;
+        overflow-y: auto; /* allow the whole panel to scroll on mobile */
+    }
+
+    .ui-panel-image-side {
+        flex: none;
+        /* Remove fixed height that was clipping tall portrait iOS screenshots */
+        height: auto;
+        max-height: 80vh;          /* generous ceiling, but not fixed */
+        overflow-y: auto;          /* scroll if image is taller than 80vh */
+        padding: 20px 16px;
+        display: flex;
+        align-items: flex-start;   /* align to top so full image visible */
+        justify-content: center;
+    }
+
+    /* Image fills width, keeps natural height — no crop */
+    .ui-panel-image-side img {
+        max-width: 100%;
+        max-height: none;          /* remove the 90vh cap on mobile */
+        height: auto;
+        width: auto;
+        object-fit: contain;
+    }
+
+    .ui-panel-right {
+        width: 100%;
+        height: auto;              /* grow to content, not fixed 45vh */
+        flex-shrink: 0;
+    }
+}

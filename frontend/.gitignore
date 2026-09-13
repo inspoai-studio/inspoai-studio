@@ -1,0 +1,33 @@
+# Logs
+*.log
+frontend.log
+
+# Node
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Editor
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS
+.DS_Store
+
+# Env
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+node_modules
+.vercel
+.env*
+!.env.example
+

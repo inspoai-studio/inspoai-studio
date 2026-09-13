@@ -1,0 +1,98 @@
+/* ── Global Banner (top-of-app notification bar) ─────────── */
+.global-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999;
+    font-family: var(--font-sans);
+    animation: bannerSlideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.global-banner.banner-closing {
+    animation: bannerSlideUp 0.3s ease forwards;
+}
+
+.global-banner-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex: 1;
+}
+
+.global-banner-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: #111;
+    letter-spacing: -0.01em;
+}
+
+.global-banner-link {
+    color: #111;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 4px 12px;
+    background: rgba(0, 0, 0, 0.06);
+    border-radius: 6px;
+    transition: background 0.2s;
+    white-space: nowrap;
+}
+
+.global-banner-link:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.global-banner svg {
+    color: #333;
+    flex-shrink: 0;
+}
+
+.banner-dismiss {
+    background: rgba(0, 0, 0, 0.05);
+    border: none;
+    color: #666;
+    cursor: pointer;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    flex-shrink: 0;
+    margin-left: 12px;
+}
+
+.banner-dismiss:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+@keyframes bannerSlideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes bannerSlideUp {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+}

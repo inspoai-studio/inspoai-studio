@@ -1,0 +1,563 @@
+/* Live Collaboration Styles - Premium Overhaul */
+
+.live-board-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #f8f9fa;
+  /* Subtle dot grid */
+  background-image:
+    radial-gradient(#d1d5db 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.live-board-container.select-tool {
+  cursor: default !important;
+}
+
+.live-board-container.select-tool .drag-item {
+  cursor: default !important;
+}
+
+/* --- Glassmorphic Toolbar --- */
+.live-toolbar {
+  position: absolute;
+  bottom: 30px;
+  /* Floating at bottom like macOS dock */
+  left: 50%;
+  transform: translateX(-50%);
+  top: auto;
+  /* Override old top positioning */
+
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 12px;
+
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.05),
+    0 10px 15px -3px rgba(0, 0, 0, 0.05),
+    0 0 0 1px rgba(0, 0, 0, 0.02);
+
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2000;
+}
+
+.live-toolbar:hover {
+  transform: translateX(-50%) translateY(-2px);
+  box-shadow:
+    0 10px 25px -5px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(0, 0, 0, 0.02);
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.vertical-divider {
+  width: 1px;
+  height: 24px;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+/* Toolbar Sections */
+.toolbar-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.toolbar-section:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.live-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #ef4444;
+  letter-spacing: 0.5px;
+}
+
+.pulsing-dot {
+  width: 6px;
+  height: 6px;
+  background: #ef4444;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+  }
+}
+
+.code-text {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+  letter-spacing: 1px;
+}
+
+.icon-btn-small {
+  background: none;
+  border: none;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  color: #6b7280;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.icon-btn-small:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: #111;
+}
+
+/* User Stack */
+.users-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-avatars-stack {
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+}
+
+.user-avatar-ring {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.2s, z-index 0.2s;
+}
+
+.user-avatar-ring:hover {
+  transform: translateY(-4px) scale(1.1);
+  z-index: 100 !important;
+}
+
+.user-avatar-ring img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.overflow-counter {
+  background: #f3f4f6;
+  color: #6b7280;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.users-count-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: #6b7280;
+  background: rgba(0, 0, 0, 0.03);
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+/* Exit Button */
+.exit-btn-icon {
+  background: rgba(254, 226, 226, 0.5);
+  /* subtle red bg */
+  color: #dc2626;
+  border: 1px solid rgba(252, 165, 165, 0.3);
+  padding: 8px 16px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.exit-btn-icon:hover {
+  background: #fee2e2;
+  transform: translateY(-1px);
+}
+
+
+/* --- Floating FAB (Tool Palette) --- */
+.add-content-fab {
+  position: absolute;
+  /* Center horizontally, but placed slightly above toolbar if we want, or side. 
+     Let's put it on the Left side vertically for a standard "Tools" feel 
+     OR simplistic bottom toolbar. 
+     Let's stick to user's bottom placement but styled better */
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  background: rgba(255, 255, 255, 0.9);
+  padding: 8px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  display: flex;
+  gap: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  z-index: 1000;
+}
+
+.fab-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background: white;
+  border: 1px solid #f3f4f6;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  gap: 6px;
+}
+
+.fab-btn:hover {
+  background: #f9fafb;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
+  border-color: #e5e7eb;
+}
+
+.fab-btn:active {
+  transform: translateY(-2px);
+}
+
+.fab-btn svg {
+  width: 20px;
+  height: 20px;
+  color: #4b5563;
+}
+
+.fab-btn span {
+  font-size: 10px;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+
+/* --- Cursor Overlay --- */
+.cursor-container {
+  pointer-events: none;
+  z-index: 3000;
+  /* Above everything */
+  transition: transform 0.08s cubic-bezier(0.2, 0, 0, 1);
+  will-change: transform;
+}
+
+.cursor-label {
+  background: inherit;
+  /* Inherit color from inline style */
+  padding: 4px 10px;
+  border-radius: 6px 6px 6px 0;
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  white-space: nowrap;
+}
+
+
+/* --- React Moveable Customization --- */
+/* We can override moveable CSS vars or classes if needed, but defaults are usually good. */
+/* Just ensuring handlers are visible */
+.moveable-control-box {
+  z-index: 4000 !important;
+  /* Ensure controls are above everything */
+}
+
+/* Ensure the canvas content doesn't shrink improperly */
+
+/* === REACTIONS === */
+.item-reactions-container {
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reaction-picker {
+  animation: popIn 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) translateY(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.reaction-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.reaction-bubble {
+  animation: bounceIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0) translateY(20px);
+  }
+
+  50% {
+    transform: scale(1.1) translateY(-5px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.add-reaction-btn {
+  transition: all 0.2s ease;
+}
+
+.add-reaction-btn:hover {
+  background: rgba(255, 255, 255, 1) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* === LIVE DOCK (PREMIUM) === */
+.live-dock-container {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  /* Let clicks pass through outside the dock */
+}
+
+.live-dock {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.85);
+  /* Slightly more opaque */
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  box-shadow:
+    0 10px 40px -10px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transform-origin: bottom center;
+}
+
+.dock-section {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.dock-divider {
+  width: 1px;
+  height: 24px;
+  background: rgba(0, 0, 0, 0.1);
+  margin: 0 4px;
+}
+
+.dock-btn {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  color: #555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.dock-btn:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+  color: #111;
+}
+
+.dock-btn:active:not(:disabled) {
+  transform: translateY(0) scale(0.95);
+}
+
+.dock-btn.active {
+  background: #ebf5ff;
+  /* Soft blue */
+  color: #007bff;
+}
+
+.dock-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.dock-active-dot {
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background: #007bff;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Tooltip (Simple browser tooltip used for now, can be custom later) */
+
+/* === ITEM FLOATING TOOLBAR === */
+.item-floating-toolbar {
+  pointer-events: auto;
+  user-select: none;
+}
+
+.toolbar-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: #444;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  padding: 0;
+}
+
+.toolbar-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: #000;
+}
+
+.toolbar-btn.warning:hover {
+  background: rgba(245, 158, 11, 0.1);
+  color: #d97706;
+}
+
+.toolbar-btn.destructive:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+}
+
+.toolbar-divider {
+  width: 1px;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.1);
+  margin: 0 4px;
+}
+
+/* === CONNECTOR HANDLES === */
+/* === MOBILE OPTIMIZATION === */
+@media (max-width: 768px) {
+  .live-dock {
+    bottom: 20px;
+    padding: 8px 12px;
+    gap: 12px;
+    max-width: 90vw;
+    overflow-x: auto;
+    justify-content: flex-start;
+    /* Allow scrolling from left */
+  }
+
+  /* Hide less important dock items on very small screens if needed, 
+     or just rely on scroll */
+
+  .live-toolbar {
+    top: 10px;
+    width: 90%;
+    padding: 6px 10px;
+  }
+
+  .live-toolbar .code-text {
+    font-size: 14px;
+  }
+
+  .dock-section {
+    padding: 0 8px;
+  }
+
+  .dock-btn {
+    width: 36px;
+    height: 36px;
+  }
+}

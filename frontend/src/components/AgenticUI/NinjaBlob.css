@@ -1,0 +1,300 @@
+/* ── Ninja Blob mascot ─────────────────────────────────────────
+   Stands on the composer bar's top edge; the positioner
+   (.inspo-robot-positioner) handles left/right placement and the dash. */
+
+.ninja-blob-container {
+  width: 110px;
+  height: 104px;
+  position: relative;
+  overflow: visible;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.nb-svg {
+  width: 110px;
+  height: 103px;
+  display: block;
+  /* grounded drop shadow — sells the 3D read */
+  filter: drop-shadow(0 6px 7px rgba(97, 58, 158, 0.28));
+}
+
+/* Static stance — no idle float. Only reactive movement (tilt toward the
+   cursor, typing pulses, the dash) is allowed. */
+.nb-bob {
+  transform-origin: 50% 90%;
+  rotate: var(--nb-tilt, 0deg);
+  transition: rotate 0.35s ease, translate 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform;
+}
+
+/* Curious: rises out from behind the bar when the input is focused */
+.ninja-blob-container.is-focused .nb-bob {
+  translate: 0 -5px;
+}
+
+/* Near: eyebrows lift */
+.nb-brow {
+  transition: transform 0.25s ease;
+  transform-origin: 75px 66px;
+}
+
+.ninja-blob-container.is-near .nb-brow-l { transform: translateY(-2.5px); }
+.ninja-blob-container.is-near .nb-brow-r { transform: translateY(-2.5px); }
+
+/* Hovered: blush deepens */
+.nb-blush { transition: opacity 0.25s ease; }
+.ninja-blob-container.is-hovered .nb-blush { opacity: 0.85; }
+
+/* Typing pulse: happy little squash per keystroke burst */
+.ninja-blob-container.nb-pulse .nb-bob {
+  animation: nbTypePulse 0.2s ease;
+}
+
+@keyframes nbTypePulse {
+  0% { scale: 1 1; }
+  45% { scale: 1.05 0.94; }
+  100% { scale: 1 1; }
+}
+
+/* Eyes / lids */
+.nb-eyes .nb-pupils {
+  transition: transform 0.18s ease-out;
+}
+
+.nb-eye .nb-lid {
+  transition: transform 0.14s ease;
+}
+
+/* Loading: determined face — brows angle in, quick focused wobble,
+   headband tails flap harder */
+.ninja-blob-container.is-loading .nb-brow-l { transform: rotate(12deg) translateY(1.5px); }
+.ninja-blob-container.is-loading .nb-brow-r { transform: rotate(-12deg) translateY(1.5px); }
+
+.ninja-blob-container.is-loading .nb-bob {
+  animation: nbWork 0.9s ease-in-out infinite;
+}
+
+@keyframes nbWork {
+  0%, 100% { transform: rotate(-1.6deg); }
+  50% { transform: rotate(1.6deg); }
+}
+
+/* Headband tails: constant gentle wave, frantic while loading/dashing */
+.nb-tail {
+  transform-origin: 122px 55px;
+  animation: nbTailWave 2.8s ease-in-out infinite;
+}
+
+.nb-tail-2 { animation-delay: -1.2s; }
+
+@keyframes nbTailWave {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-9deg); }
+}
+
+.ninja-blob-container.is-loading .nb-tail,
+.ninja-blob-container.is-walking .nb-tail {
+  animation-duration: 0.55s;
+}
+
+/* Double-click: dash along the bar (positioner animates left/right) —
+   lean into the run with fast squash-stretch */
+.ninja-blob-container.is-walking .nb-bob {
+  animation: nbRun 0.32s ease-in-out infinite;
+}
+
+.ninja-blob-container.is-walking.side-left .nb-bob { rotate: -9deg; }
+.ninja-blob-container.is-walking.side-right .nb-bob { rotate: 9deg; }
+
+@keyframes nbRun {
+  0%, 100% { transform: translateY(0) scale(1.04, 0.94); }
+  50% { transform: translateY(-7px) scale(0.96, 1.05); }
+}
+
+/* Dash dust puffs */
+.ninja-blob-container.is-walking::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  width: 22px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(157, 99, 221, 0.35);
+  filter: blur(3px);
+  animation: nbDust 0.32s ease-out infinite;
+}
+
+.ninja-blob-container.is-walking.side-left::after { right: -14px; }
+.ninja-blob-container.is-walking.side-right::after { left: -14px; }
+
+@keyframes nbDust {
+  from { opacity: 0.9; transform: scale(0.5); }
+  to { opacity: 0; transform: scale(1.5) translateY(-4px); }
+}
+
+/* Sleepy: slow sway + floating Zzz */
+.ninja-blob-container.is-sleepy .nb-bob {
+  animation: nbSleepSway 5.5s ease-in-out infinite;
+}
+
+@keyframes nbSleepSway {
+  0%, 100% { transform: rotate(-1.6deg); }
+  50% { transform: rotate(1.6deg); }
+}
+
+.nb-zzz {
+  position: absolute;
+  top: -16px;
+  right: 6px;
+  font-family: inherit;
+  font-weight: 700;
+  color: #7C55B8;
+  pointer-events: none;
+}
+
+.nb-zzz span {
+  position: absolute;
+  right: 0;
+  opacity: 0;
+  animation: nbZzz 3s ease-in infinite;
+}
+
+.nb-zzz span:nth-child(1) { font-size: 11px; animation-delay: 0s; }
+.nb-zzz span:nth-child(2) { font-size: 15px; animation-delay: 1s; }
+.nb-zzz span:nth-child(3) { font-size: 12px; animation-delay: 2s; }
+
+@keyframes nbZzz {
+  0% { opacity: 0; transform: translate(0, 0) rotate(0); }
+  25% { opacity: 0.9; }
+  100% { opacity: 0; transform: translate(12px, -26px) rotate(18deg); }
+}
+
+/* Excitement marks pop */
+.nb-marks {
+  transition: opacity 0.15s ease;
+  transform-origin: 75px 14px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nb-bob,
+  .nb-tail,
+  .ninja-blob-container.is-walking .nb-bob,
+  .ninja-blob-container.is-sleepy .nb-bob {
+    animation: none;
+  }
+}
+
+/* Speech bubble */
+.nb-bubble {
+  position: absolute;
+  bottom: calc(100% - 6px);
+  left: 50%;
+  transform: translateX(-78%);
+  background: #FFFFFF;
+  color: #3A2B4F;
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.3;
+  padding: 8px 12px;
+  border-radius: 14px 14px 4px 14px;
+  box-shadow: 0 4px 16px rgba(80, 50, 140, 0.18), 0 1px 2px rgba(80, 50, 140, 0.1);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 6;
+  animation: nbBubblePop 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.nb-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  right: 16px;
+  width: 9px;
+  height: 9px;
+  background: #FFFFFF;
+  transform: rotate(45deg);
+  border-radius: 2px;
+}
+
+.ninja-blob-container.side-left .nb-bubble {
+  transform: translateX(-22%);
+  border-radius: 14px 14px 14px 4px;
+}
+
+.ninja-blob-container.side-left .nb-bubble::after {
+  right: auto;
+  left: 16px;
+}
+
+@keyframes nbBubblePop {
+  from { opacity: 0; scale: 0.7; translate: 0 6px; }
+  to { opacity: 1; scale: 1; translate: 0 0; }
+}
+
+/* Typing tricks: jump / backflip on the spot, then settle back on the bar */
+.ninja-blob-container.trick-jump .nb-bob {
+  animation: nbJump 0.85s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes nbJump {
+  0% { transform: translateY(0) scale(1, 1); }
+  18% { transform: translateY(2px) scale(1.08, 0.88); }
+  50% { transform: translateY(-30px) scale(0.94, 1.08); }
+  78% { transform: translateY(0) scale(1.1, 0.9); }
+  100% { transform: translateY(0) scale(1, 1); }
+}
+
+.ninja-blob-container.trick-flip .nb-bob {
+  animation: nbFlip 0.85s ease-in-out;
+}
+
+@keyframes nbFlip {
+  0% { transform: translateY(0) rotate(0); }
+  15% { transform: translateY(3px) scale(1.06, 0.9) rotate(0); }
+  55% { transform: translateY(-36px) rotate(-200deg); }
+  85% { transform: translateY(0) rotate(-360deg) scale(1.08, 0.92); }
+  100% { transform: translateY(0) rotate(-360deg) scale(1, 1); }
+}
+
+/* Crying: sad inward-tilted brows + falling tears */
+.ninja-blob-container.is-crying .nb-brow-l { transform: rotate(-9deg) translateY(1px); }
+.ninja-blob-container.is-crying .nb-brow-r { transform: rotate(9deg) translateY(1px); }
+
+.nb-tear {
+  animation: nbTear 1.5s ease-in infinite;
+}
+
+.nb-tear-2 { animation-delay: 0.75s; }
+
+@keyframes nbTear {
+  0% { opacity: 0; transform: translateY(0) scale(0.7); }
+  25% { opacity: 0.95; transform: translateY(3px) scale(1); }
+  100% { opacity: 0; transform: translateY(16px) scale(1.05); }
+}
+
+/* Emoji cheer burst */
+.nb-emoji {
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.nb-emoji span {
+  position: absolute;
+  font-size: 15px;
+  opacity: 0;
+  animation: nbEmojiFloat 1.25s ease-out forwards;
+}
+
+.nb-emoji span:nth-child(1) { left: -26px; animation-delay: 0s; }
+.nb-emoji span:nth-child(2) { left: -4px; animation-delay: 0.12s; }
+.nb-emoji span:nth-child(3) { left: 18px; animation-delay: 0.24s; }
+
+@keyframes nbEmojiFloat {
+  0% { opacity: 0; transform: translateY(8px) scale(0.5); }
+  25% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-32px) scale(1.2) rotate(12deg); }
+}

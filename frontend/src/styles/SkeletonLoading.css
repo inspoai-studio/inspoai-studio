@@ -1,0 +1,201 @@
+@keyframes shimmer {
+  0% {
+    background-position: -468px 0;
+  }
+
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+.skeleton-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Search skeleton */
+.search-skeleton {
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.skeleton-input {
+  width: 600px;
+  height: 56px;
+  border-radius: 28px;
+  background: linear-gradient(to right, #f0f0f0 8%, #e0e0e0 18%, #f0f0f0 33%);
+  background-size: 800px 104px;
+  animation: shimmer 1.5s linear infinite forwards;
+}
+
+.skeleton-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.skeleton-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(to right, #f0f0f0 8%, #e0e0e0 18%, #f0f0f0 33%);
+  background-size: 800px 104px;
+  animation: shimmer 1.5s linear infinite forwards;
+}
+
+/* Header skeleton */
+.skeleton-header {
+  margin-bottom: 24px;
+}
+
+.skeleton-tags {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.skeleton-tag {
+  width: 80px;
+  height: 28px;
+  border-radius: 14px;
+  background: linear-gradient(to right, #f0f0f0 8%, #e0e0e0 18%, #f0f0f0 33%);
+  background-size: 800px 104px;
+  animation: shimmer 1.5s linear infinite forwards;
+}
+
+.skeleton-title {
+  width: 60%;
+  height: 36px;
+  border-radius: 4px;
+  background: linear-gradient(to right, #f0f0f0 8%, #e0e0e0 18%, #f0f0f0 33%);
+  background-size: 800px 104px;
+  animation: shimmer 1.5s linear infinite forwards;
+}
+
+/* Grid skeleton */
+.skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.skeleton-item {
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 180px;
+  background: linear-gradient(to right, #f0f0f0 8%, #e0e0e0 18%, #f0f0f0 33%);
+  background-size: 800px 104px;
+  animation: shimmer 1.5s linear infinite forwards;
+}
+
+.skeleton-info {
+  padding: 12px;
+}
+
+.skeleton-text {
+  height: 20px;
+  width: 80%;
+  border-radius: 4px;
+  background: linear-gradient(to right, #f0f0f0 8%, #e0e0e0 18%, #f0f0f0 33%);
+  background-size: 800px 104px;
+  animation: shimmer 1.5s linear infinite forwards;
+}
+
+/* Loading more skeleton */
+.skeleton-dots {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 8px;
+}
+
+.skeleton-dots span {
+  width: 6px;
+  height: 6px;
+  margin: 0 2px;
+  border-radius: 50%;
+  background-color: currentColor;
+  opacity: 0.6;
+  animation: dotPulse 1.5s infinite ease-in-out;
+}
+
+.skeleton-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.skeleton-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes dotPulse {
+
+  0%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+/* Bottom Search Bar Skeleton (Continue search) */
+.bottom-search-skeleton {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: #fff;
+  border-radius: 28px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+}
+
+.skeleton-search-bar {
+  display: flex;
+  align-items: center;
+  height: 56px;
+}
+
+.skeleton-icons {
+  display: flex;
+  gap: 8px;
+  margin-right: 12px;
+}
+
+.skeleton-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(to right, #f0f0f0 8%, #e0e0e0 18%, #f0f0f0 33%);
+  background-size: 800px 104px;
+  animation: shimmer 1.5s linear infinite forwards;
+}
+
+.skeleton-input {
+  flex: 1;
+  height: 40px;
+  border-radius: 20px;
+  background: linear-gradient(to right, #f0f0f0 8%, #e0e0e0 18%, #f0f0f0 33%);
+  background-size: 800px 104px;
+  animation: shimmer 1.5s linear infinite forwards;
+}
+
+.skeleton-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  margin-left: 12px;
+  background: linear-gradient(to right, #f0f0f0 8%, #e0e0e0 18%, #f0f0f0 33%);
+  background-size: 800px 104px;
+  animation: shimmer 1.5s linear infinite forwards;
+}

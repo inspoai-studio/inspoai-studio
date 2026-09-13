@@ -1,0 +1,240 @@
+/* ──────────────────────────────────────────────────────────────────────────
+   LegacyGate.css — Premium dark password wall for the legacy access route
+   ────────────────────────────────────────────────────────────────────────── */
+
+.legacy-gate-overlay {
+  position: fixed;
+  inset: 0;
+  background: #070910;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  font-family: var(--font-sans);
+}
+
+/* Subtle animated radial glow in background */
+.legacy-gate-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 700px 500px at 50% 40%, rgba(99, 102, 241, 0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 400px 300px at 20% 80%, rgba(6, 207, 156, 0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Dot grid overlay */
+.legacy-gate-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 0);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+
+/* ── Card ── */
+.legacy-gate-card {
+  position: relative;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 48px 44px 40px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 24px 80px rgba(0, 0, 0, 0.6),
+    0 4px 16px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  animation: gateEntrance 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes gateEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Shake animation for wrong password */
+.legacy-gate-card.shake {
+  animation: gateShake 0.55s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes gateShake {
+  10%, 90%  { transform: translateX(-4px); }
+  20%, 80%  { transform: translateX(6px); }
+  30%, 50%, 70% { transform: translateX(-8px); }
+  40%, 60%  { transform: translateX(8px); }
+  100%      { transform: translateX(0); }
+}
+
+/* ── Lock icon circle ── */
+.legacy-gate-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: #818cf8;
+}
+
+/* ── Badge ── */
+.legacy-gate-badge {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #6366f1;
+  background: rgba(99, 102, 241, 0.12);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  padding: 4px 12px;
+  border-radius: 50px;
+  margin-bottom: 18px;
+}
+
+/* ── Title ── */
+.legacy-gate-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 8px;
+  letter-spacing: -0.5px;
+}
+
+/* ── Subtitle ── */
+.legacy-gate-subtitle {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.45);
+  margin: 0 0 32px;
+  line-height: 1.5;
+}
+
+/* ── Form ── */
+.legacy-gate-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.legacy-gate-input-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.legacy-gate-input {
+  width: 100%;
+  height: 50px;
+  padding: 0 48px 0 18px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: #fff;
+  font-size: 15px;
+  font-family: inherit;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  letter-spacing: 0.5px;
+}
+
+.legacy-gate-input:focus {
+  border-color: rgba(99, 102, 241, 0.6);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+.legacy-gate-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.legacy-gate-eye {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+
+.legacy-gate-eye:hover {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ── Error ── */
+.legacy-gate-error {
+  font-size: 13px;
+  color: #f87171;
+  margin: 0;
+  animation: fadeSlideIn 0.25s ease forwards;
+}
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Submit button ── */
+.legacy-gate-submit {
+  height: 50px;
+  width: 100%;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: -0.1px;
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.35);
+}
+
+.legacy-gate-submit:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 28px rgba(99, 102, 241, 0.45);
+}
+
+.legacy-gate-submit:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.legacy-gate-submit:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ── Hint text ── */
+.legacy-gate-hint {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.2);
+  margin: 28px 0 0;
+  line-height: 1.6;
+  max-width: 300px;
+}

@@ -1,0 +1,17 @@
+# Allow indexing of public browse pages
+User-agent: *
+Allow: /browse/
+Allow: /view/
+
+# Block private app areas
+Disallow: /moodboard/
+Disallow: /audit/
+Disallow: /library/
+Disallow: /creator-studio/
+Disallow: /profile/
+Disallow: /scanner/
+Disallow: /admin/
+Disallow: /login
+
+# Sitemaps (once generated)
+# Sitemap: https://app.inspoai.io/sitemap.xml

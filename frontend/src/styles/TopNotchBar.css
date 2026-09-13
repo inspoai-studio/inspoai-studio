@@ -1,0 +1,758 @@
+/* ──────────────────────────────────────────────────────────────────────────
+   TopNotchBar.css — Dynamic Island-style floating top navigation
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* ── Wrapper ── */
+.top-notch-wrapper {
+  position: fixed;
+  top: 16px;
+  left: 0;
+  width: 100%;
+  height: 54px;
+  z-index: 9999;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  box-sizing: border-box;
+  transition: background 0.3s ease, backdrop-filter 0.3s ease, top 0.3s ease, height 0.3s ease, border-radius 0.3s ease;
+  border-radius: 0;
+}
+
+/* Frosted background on scroll — only when inspo_mode has results */
+.top-notch-wrapper.scrolled[data-active-view="inspo_mode"] {
+  top: 0;
+  height: 72px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  padding: 0 32px;
+}
+
+/* ── Bar ── */
+.top-notch-bar {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: 54px;
+  background: #F2F2F2;
+  border-radius: 50px;
+  padding: 5px;
+  animation: notchEntrance 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  white-space: nowrap;
+  transition: left 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@keyframes notchEntrance {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -20px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
+/* ── Floating Logo ── */
+.top-notch-left-floating {
+  display: flex;
+  align-items: center;
+  pointer-events: auto;
+  z-index: 9999;
+  cursor: pointer;
+  margin: 0;
+  transition: margin-left 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Hide logo and profile when AgenticUI sidebar is open */
+.main-screen:has(.agentic-chat-panel:not(.collapsed)) .top-notch-left-floating,
+.main-screen:has(.agentic-chat-panel:not(.collapsed)) .top-notch-right-floating {
+  display: none;
+}
+
+/* Shift logo to the right when sidebar is collapsed to prevent overlap */
+.main-screen:has(.agentic-chat-panel.collapsed) .top-notch-left-floating {
+  margin-left: 60px;
+}
+
+.top-notch-logo-img {
+  height: 30px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.top-notch-logo-img:hover {
+  transform: scale(1.03);
+}
+
+/* ── Floating User Avatar + Menu (styled as a pill) ── */
+.top-notch-right-floating {
+  pointer-events: auto;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  background: #F2F2F2;
+  border-radius: 30px;
+  padding: 6px;
+  height: 44px;
+  box-sizing: border-box;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.top-notch-trial-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0ea5e9, #10b981);
+  padding: 1px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-right: 6px;
+  flex-shrink: 0;
+}
+
+.top-notch-trial-badge:hover {
+  transform: translateY(-0.5px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+}
+
+.trial-badge-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #F2F2F2;
+  color: #111111;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 19px;
+  transition: background 0.2s ease;
+  font-family: var(--font-sans);
+}
+
+.top-notch-trial-badge:hover .trial-badge-inner {
+  background: #e6e6e6;
+}
+
+.top-notch-right-floating.has-plus {
+  padding: 6px 6px 6px 10px;
+  gap: 8px;
+}
+
+.top-notch-logo {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.top-notch-logo:hover {
+  background: rgba(0, 0, 0, 0.04);
+  transform: scale(1.05);
+}
+
+.top-notch-logo img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.top-notch-new-chat {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  color: rgba(0, 0, 0, 0.65);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.top-notch-new-chat:hover {
+  background: rgba(0, 0, 0, 0.06);
+  color: #111;
+  transform: scale(1.05);
+}
+
+/* ── Center nav ── */
+.top-notch-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0;
+  position: relative;
+}
+
+/* ── Nav item ── */
+.top-notch-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  /* Figma layout Gap: 10px */
+  height: 44px;
+  /* Figma layout Height: 44px */
+  padding: 12px 18px 12px 16px;
+  /* Figma padding: top 12, right 18, bottom 12, left 16 */
+  border-radius: 32px;
+  /* Figma radius: 32px */
+  box-sizing: border-box;
+  cursor: pointer;
+  color: #A6A6A6;
+  --svg-detail-color: #F2F2F2;
+  font-size: 14px;
+  font-weight: 550;
+  font-family: var(--font-sans);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  outline: none;
+  position: relative;
+  z-index: 2;
+}
+
+
+
+.top-notch-item:focus-visible {
+  box-shadow: 0 0 0 2px rgba(5, 150, 105, 0.4);
+}
+
+/* ── Active state — solid white pill with green accent ── */
+.top-notch-item.active {
+  color: #00A672;
+  --svg-detail-color: #FFFFFF;
+}
+
+/* ── Active sliding background pill ── */
+.top-notch-active-pill {
+  position: absolute;
+  top: 0;
+  height: 44px;
+  background: #FFFFFF;
+  border-radius: 32px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.04);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.top-notch-item.navigating {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* ── Icon wrapper ── */
+.top-notch-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.top-notch-label {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  /* Figma size: 15px */
+  font-weight: 500;
+  /* Figma weight: 500 (Medium) */
+  line-height: 15.09px;
+  /* Figma line height: 15.09px */
+  letter-spacing: 0;
+  display: inline-block;
+  vertical-align: middle;
+  /* Figma vertical alignment: Middle */
+}
+
+/* Figma colors: Linear Gradient #00A672 -> #000000 */
+.top-notch-item.active .top-notch-label {
+  background: linear-gradient(90deg, #00A672 0%, #000000 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  /* Fallback */
+}
+
+/* Fill the search circle solid green when Inspo Mode is active */
+#top-notch-inspo_mode.active .top-notch-icon svg circle {
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+/* Fill the pencil body green when Design Mode is active (open sparkle paths are unaffected) */
+#top-notch-design_mode.active .top-notch-icon svg path {
+  fill: currentColor;
+}
+
+
+/* ── Tooltip ── */
+.top-notch-tooltip {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(22, 22, 30, 0.95);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 11px;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  white-space: nowrap;
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+  animation: tooltipFadeIn 0.15s ease forwards;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 10000;
+  letter-spacing: 0.1px;
+}
+
+.top-notch-tooltip::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 0 4px 4px 4px;
+  border-style: solid;
+  border-color: transparent transparent rgba(22, 22, 30, 0.95) transparent;
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* ── Right section — user avatar ── */
+.top-notch-right {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.top-notch-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #F2F2F2;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.top-notch-avatar:hover,
+.top-notch-avatar.open {
+  border-color: rgba(0, 0, 0, 0.25);
+  transform: scale(1.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.top-notch-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+.top-notch-avatar-initial {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+  font-family: var(--font-sans);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+/* Online dot */
+.top-notch-avatar-dot {
+  position: absolute;
+  bottom: 1px;
+  right: 1px;
+  width: 7px;
+  height: 7px;
+  background: #22c55e;
+  border: 1.5px solid rgba(12, 12, 16, 0.88);
+  border-radius: 50%;
+}
+
+/* ── User dropdown menu ── */
+.top-notch-user-menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  width: 220px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  padding: 12px;
+  box-shadow:
+    0 8px 40px rgba(0, 0, 0, 0.08),
+    0 1px 0 rgba(255, 255, 255, 0.9) inset;
+  animation: menuDropIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  z-index: 10001;
+}
+
+@keyframes menuDropIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.top-notch-user-header {
+  padding: 4px 4px 8px;
+  margin-bottom: 4px;
+}
+
+.top-notch-user-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #111;
+  font-family: var(--font-sans);
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.top-notch-user-plan {
+  font-size: 11px;
+  color: rgba(0, 0, 0, 0.45);
+  font-family: var(--font-sans);
+}
+
+/* ── Quota bar in menu ── */
+.top-notch-quota {
+  padding: 8px 4px 10px;
+  margin-bottom: 4px;
+}
+
+.top-notch-quota-bar {
+  height: 3px;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.top-notch-quota-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #008CFF, #059669);
+  border-radius: 99px;
+  transition: width 0.5s ease;
+}
+
+.top-notch-quota-text {
+  font-size: 11px;
+  color: rgba(0, 0, 0, 0.4);
+  font-family: var(--font-sans);
+}
+
+/* ── Menu items ── */
+.top-notch-menu-items {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.top-notch-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  padding: 9px 10px;
+  border: none;
+  background: none;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 13px;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  border-radius: 8px;
+  text-align: left;
+  transition: all 0.15s ease;
+}
+
+.top-notch-menu-item:hover {
+  background: rgba(0, 0, 0, 0.04);
+  color: #111;
+}
+
+.top-notch-menu-item.upgrade {
+  color: #7c3aed;
+}
+
+.top-notch-menu-item.upgrade:hover {
+  background: rgba(124, 58, 237, 0.06);
+  color: #6d28d9;
+}
+
+.top-notch-menu-item.danger {
+  color: rgba(220, 38, 38, 0.85);
+}
+
+.top-notch-menu-item.danger:hover {
+  background: rgba(220, 38, 38, 0.06);
+  color: #dc2626;
+}
+
+.top-notch-menu-divider {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.06);
+  margin: 4px 0;
+}
+
+/* ── Responsive: on mobile, simplify ── */
+@media (max-width: 600px) {
+  .top-notch-bar {
+    padding: 7px 10px;
+    gap: 4px;
+  }
+
+  .top-notch-item {
+    width: 32px;
+    height: 32px;
+  }
+
+  .top-notch-logo {
+    width: 28px;
+    height: 28px;
+  }
+
+  .top-notch-new-chat {
+    width: 24px;
+    height: 24px;
+  }
+
+  .top-notch-avatar {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 420px) {
+  .top-notch-wrapper {
+    top: 10px;
+  }
+}
+
+.top-notch-icon-svg-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+}
+
+.top-notch-icon-svg-wrapper svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.top-notch-icon-svg-wrapper svg path {
+  transition: fill 0.25s ease, stroke 0.25s ease;
+}
+
+/* Center alignment adjustments for TopNotchBar when the left Agent Chat panel is present on desktop */
+@media (min-width: 901px) {
+  .main-screen:has(.agentic-chat-panel:not(.collapsed)) .top-notch-bar {
+    left: calc(50% + 210px);
+  }
+
+  .main-screen:has(.agentic-chat-panel.collapsed) .top-notch-bar {
+    left: calc(50% + 30px);
+  }
+}
+
+/* ── Mobile standalone logo (bypasses backdrop-filter containing block) ── */
+.mobile-top-logo {
+  display: none; /* hidden on desktop — desktop uses .top-notch-left-floating */
+}
+
+/* ── Mobile: move pill nav to bottom bar, keep logo at top-left ── */
+@media (max-width: 768px) {
+
+  /* The wrapper becomes a BOTTOM bar — but the logo is pulled out via absolute pos */
+  .top-notch-wrapper {
+    top: unset !important;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: calc(62px + env(safe-area-inset-bottom));
+    padding: 0 16px calc(10px + env(safe-area-inset-bottom));
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-top: 1px solid rgba(0, 0, 0, 0.07);
+    border-radius: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    z-index: 2100;
+    pointer-events: auto;
+    animation: none;
+  }
+
+  /* Disable scrolled frosted top header on mobile */
+  .top-notch-wrapper.scrolled[data-active-view="inspo_mode"] {
+    top: unset !important;
+    bottom: 0;
+    height: calc(62px + env(safe-area-inset-bottom));
+    background: rgba(255, 255, 255, 0.92);
+    border-bottom: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.07);
+    padding: 0 16px calc(10px + env(safe-area-inset-bottom));
+  }
+
+  /* Standalone logo: visible on mobile, fixed top-left — NOT inside the bottom wrapper */
+  .mobile-top-logo {
+    display: flex;
+    position: fixed;
+    top: 16px;
+    left: 20px;
+    z-index: 9999;
+    pointer-events: auto;
+    cursor: pointer;
+    align-items: center;
+  }
+
+  /* Hide the original floating logo so it doesn't appear in the bottom bar */
+  .top-notch-left-floating {
+    display: none !important;
+  }
+
+  /* The pill: fills the center of the bottom bar */
+  .top-notch-bar {
+    position: static;
+    transform: none;
+    left: unset;
+    flex: 1;
+    max-width: calc(100% - 60px); /* leave room for avatar */
+    height: 44px;
+    animation: none;
+    transition: none;
+    overflow: hidden;
+    padding: 4px 6px;
+  }
+
+  /* Nav items: icon-only, smaller squares */
+  .top-notch-item {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px;
+    padding: 0 !important;
+    flex-shrink: 1;
+  }
+
+  /* Active pill: perfect circle to match item size */
+  .top-notch-active-pill {
+    width: 34px !important;
+    height: 34px !important;
+    border-radius: 50% !important;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  /* Hide all text labels inside the pill on mobile */
+  .top-notch-label {
+    display: none !important;
+  }
+
+  /* The nav row: pack tightly */
+  .top-notch-nav {
+    gap: 2px;
+  }
+
+  /* Avatar block: only show the avatar, no + button */
+  .top-notch-right-floating {
+    display: flex !important;
+    pointer-events: auto;
+    align-items: center;
+    gap: 0;
+    flex-shrink: 0;
+  }
+
+  /* Hide the new-chat + button on mobile — saves space */
+  .top-notch-new-chat {
+    display: none !important;
+  }
+
+  /* Avatar size */
+  .top-notch-avatar {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* User dropdown opens upward on mobile */
+  .top-notch-user-menu {
+    bottom: calc(100% + 12px);
+    top: unset;
+    right: 0;
+    left: unset;
+  }
+
+  /* Override: keep avatar visible even on agentic pages */
+  .main-screen:has(.agentic-chat-panel:not(.collapsed)) .top-notch-right-floating {
+    display: flex !important;
+  }
+  /* Keep standalone mobile logo visible even when agentic panel is open */
+  .main-screen:has(.agentic-chat-panel:not(.collapsed)) .mobile-top-logo {
+    display: flex !important;
+  }
+
+  /* Pad content so it doesn't hide behind the bottom bar */
+  .content-area {
+    padding-bottom: calc(78px + env(safe-area-inset-bottom)) !important;
+  }
+  .content-area.no-padding {
+    padding-bottom: calc(78px + env(safe-area-inset-bottom)) !important;
+  }
+}

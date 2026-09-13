@@ -1,0 +1,719 @@
+/* ═══════════════════════════════════════════════════════
+   WebsiteDetailPopup.css
+   Full-screen overlay for Lapa/Landbook website results
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Backdrop ── */
+.wd-popup-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    z-index: 10000;
+    animation: wdFadeIn 0.2s ease;
+}
+
+@keyframes wdFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes wdSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ── Main container ── */
+.wd-popup {
+    position: fixed;
+    inset: 20px;
+    z-index: 10001;
+    display: flex;
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(0, 0, 0, 0.06);
+    animation: wdSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Lock body scroll when popup is open */
+body.website-popup-open .floating-search-bar {
+    display: none !important;
+}
+
+/* ═══════════════════════════════════════════
+   LEFT: Image Viewer
+   ═══════════════════════════════════════════ */
+
+.wd-popup-viewer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #f5f5f7;
+    min-width: 0;
+    position: relative;
+}
+
+.wd-popup-image-area {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.wd-popup-main-image {
+    max-width: 90%;
+    max-height: 85%;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+    transition: transform 0.15s ease;
+    will-change: transform;
+}
+
+.wd-popup-main-image.loading {
+    opacity: 0.5;
+    filter: blur(2px);
+}
+
+.wd-popup-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.wd-spinner {
+    width: 28px;
+    height: 28px;
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    border-top-color: #333;
+    border-radius: 50%;
+    animation: wdSpin 0.7s linear infinite;
+}
+
+@keyframes wdSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ── Zoom controls bar ── */
+.wd-popup-zoom-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: #ffffff;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.wd-zoom-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background: #fff;
+    color: #555;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.wd-zoom-btn:hover {
+    background: #f0f0f0;
+    border-color: #ccc;
+    color: #222;
+}
+
+.wd-zoom-btn.active,
+.wd-pan-btn.active {
+    background: #1a1a1a;
+    border-color: #1a1a1a;
+    color: #fff;
+}
+
+.wd-zoom-slider {
+    flex: 1;
+    max-width: 200px;
+    height: 4px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #e0e0e0;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+}
+
+.wd-zoom-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #1a1a1a;
+    cursor: pointer;
+    border: 2px solid #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+.wd-zoom-slider::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #1a1a1a;
+    cursor: pointer;
+    border: 2px solid #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+.wd-zoom-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #888;
+    min-width: 40px;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
+
+.wd-zoom-divider {
+    width: 1px;
+    height: 20px;
+    background: #e0e0e0;
+    margin: 0 4px;
+}
+
+/* ── Extra images thumbnail strip ── */
+.wd-popup-thumbstrip {
+    display: flex;
+    gap: 8px;
+    padding: 8px 16px 12px;
+    overflow-x: auto;
+    background: #ffffff;
+    border-top: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.wd-popup-thumbstrip::-webkit-scrollbar {
+    height: 4px;
+}
+
+.wd-popup-thumbstrip::-webkit-scrollbar-thumb {
+    background: #d0d0d0;
+    border-radius: 2px;
+}
+
+.wd-thumb-item {
+    flex: 0 0 auto;
+    width: 80px;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    padding: 4px;
+    transition: all 0.15s ease;
+}
+
+.wd-thumb-item:hover {
+    border-color: #ccc;
+    background: #f5f5f5;
+}
+
+.wd-thumb-item.active {
+    border-color: #1a1a1a;
+    background: #f0f0f0;
+}
+
+.wd-thumb-item img {
+    width: 100%;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.wd-thumb-item span {
+    display: block;
+    font-size: 10px;
+    color: #777;
+    margin-top: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ═══════════════════════════════════════════
+   RIGHT: Metadata Sidebar
+   ═══════════════════════════════════════════ */
+
+.wd-popup-sidebar {
+    width: 340px;
+    flex: 0 0 340px;
+    display: flex;
+    flex-direction: column;
+    background: #fafafa;
+    border-left: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.wd-popup-sidebar-scroll {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px 20px 16px;
+}
+
+.wd-popup-sidebar-scroll::-webkit-scrollbar {
+    width: 4px;
+}
+
+.wd-popup-sidebar-scroll::-webkit-scrollbar-thumb {
+    background: #d0d0d0;
+    border-radius: 2px;
+}
+
+/* Close button */
+.wd-popup-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.05);
+    border: none;
+    border-radius: 8px;
+    color: #555;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    z-index: 10;
+}
+
+.wd-popup-close:hover {
+    background: rgba(0, 0, 0, 0.1);
+    color: #111;
+}
+
+/* Header */
+.wd-popup-header {
+    margin-bottom: 20px;
+    padding-right: 36px;
+}
+
+.wd-popup-source-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #888;
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.wd-popup-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111;
+    line-height: 1.3;
+    margin: 0 0 8px;
+    letter-spacing: -0.3px;
+}
+
+.wd-popup-description {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.55;
+    margin: 0;
+}
+
+/* ── Meta sections ── */
+.wd-popup-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.wd-meta-section {
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.wd-meta-section:last-child {
+    border-bottom: none;
+}
+
+.wd-meta-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin-bottom: 10px;
+}
+
+.wd-meta-label svg {
+    opacity: 0.6;
+}
+
+/* Chips */
+.wd-meta-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.wd-meta-chip {
+    font-size: 12px;
+    font-weight: 500;
+    color: #444;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    padding: 4px 10px;
+    border-radius: 6px;
+    transition: all 0.15s ease;
+}
+
+.wd-meta-chip:hover {
+    background: #f0f0f0;
+    border-color: #ccc;
+}
+
+.wd-chip-typeface {
+    font-style: italic;
+    color: #555;
+}
+
+/* Colors */
+.wd-meta-colors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.wd-color-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px 4px 4px;
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+}
+
+.wd-color-swatch {
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    flex: 0 0 auto;
+}
+
+.wd-color-name {
+    font-size: 11px;
+    font-weight: 500;
+    color: #555;
+    text-transform: capitalize;
+}
+
+/* Platform */
+.wd-meta-platform {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.wd-platform-icon {
+    font-size: 16px;
+}
+
+/* Year */
+.wd-meta-year {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Extra images gallery (sidebar) */
+.wd-meta-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.wd-gallery-thumb {
+    cursor: pointer;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e8e8e8;
+    background: #fff;
+    transition: all 0.15s ease;
+}
+
+.wd-gallery-thumb:hover {
+    border-color: #1a1a1a;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.wd-gallery-thumb img {
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+    display: block;
+}
+
+.wd-gallery-label {
+    display: block;
+    font-size: 10px;
+    color: #777;
+    padding: 4px 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ── Sticky action buttons ── */
+.wd-popup-actions {
+    padding: 12px 20px;
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    background: #fafafa;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.wd-action-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    background: #1a1a1a;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.wd-action-primary:hover {
+    background: #333;
+}
+
+.wd-action-primary.selected {
+    background: #22c55e;
+}
+
+.wd-action-primary.selected:hover {
+    background: #16a34a;
+}
+
+.wd-action-secondary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #444;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.wd-action-secondary:hover {
+    background: #f5f5f5;
+    border-color: #ccc;
+    color: #111;
+}
+
+/* ── Convert to Figma button — state machine ── */
+.wd-action-figma {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    /* idle state — Figma purple */
+    color: #fff;
+    background: linear-gradient(135deg, #7B61FF 0%, #5B3FDE 100%);
+    box-shadow: 0 2px 8px rgba(123, 97, 255, 0.35);
+}
+
+.wd-action-figma:hover:not(:disabled) {
+    background: linear-gradient(135deg, #8F78FF 0%, #6F53E8 100%);
+    box-shadow: 0 4px 14px rgba(123, 97, 255, 0.45);
+    transform: translateY(-1px);
+}
+
+/* loading state */
+.wd-action-figma.loading {
+    background: linear-gradient(135deg, #b0a4f0 0%, #9888d8 100%);
+    cursor: not-allowed;
+    opacity: 0.8;
+    box-shadow: none;
+}
+
+/* ready state — brighter, inviting pulse border */
+.wd-action-figma.ready {
+    background: linear-gradient(135deg, #5B3FDE 0%, #4329c4 100%);
+    box-shadow: 0 2px 8px rgba(91, 63, 222, 0.4);
+    animation: figmaPulse 2s ease-in-out infinite;
+}
+
+@keyframes figmaPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 2px 8px rgba(91, 63, 222, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 4px 20px rgba(91, 63, 222, 0.7);
+    }
+}
+
+.wd-action-figma.ready:hover {
+    animation: none;
+    background: linear-gradient(135deg, #6B50EE 0%, #5339D4 100%);
+    transform: translateY(-1px);
+}
+
+/* copied state — success green */
+.wd-action-figma.copied {
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    box-shadow: 0 2px 8px rgba(34, 197, 94, 0.35);
+    cursor: default;
+}
+
+/* error state — amber/red */
+.wd-action-figma.error {
+    background: linear-gradient(135deg, #f97316 0%, #dc2626 100%);
+    box-shadow: 0 2px 8px rgba(249, 115, 22, 0.35);
+}
+
+.wd-action-figma.error:hover {
+    background: linear-gradient(135deg, #fb923c 0%, #ef4444 100%);
+    transform: translateY(-1px);
+}
+
+/* Error message text */
+.wd-figma-error {
+    font-size: 11px;
+    color: #dc2626;
+    text-align: center;
+    margin: -2px 0 0;
+    line-height: 1.4;
+    padding: 0 4px;
+}
+
+/* Spinner animation on the SVG icon */
+.wd-btn-spinner {
+    animation: wdSpin 0.8s linear infinite;
+}
+
+/* Plugin instruction box */
+.wd-figma-ready-box {
+    background: #fdfdfd;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 12px 16px;
+    animation: wdSlideUp 0.3s ease;
+}
+
+.wd-figma-ready-title {
+    margin: 0 0 8px 0;
+    font-size: 13px;
+    font-weight: 700;
+    color: #111;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.wd-figma-ready-title svg {
+    color: #22c55e;
+}
+
+.wd-figma-ready-steps {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 11.5px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.wd-figma-ready-steps li {
+    padding-left: 2px;
+}
+
+/* ═══════════════════════════════════════════
+   Responsive (smaller screens)
+   ═══════════════════════════════════════════ */
+
+@media (max-width: 900px) {
+    .wd-popup {
+        inset: 0;
+        border-radius: 0;
+        flex-direction: column;
+    }
+
+    .wd-image-side {
+        flex: none;
+        height: 55vh;
+        padding: 0;
+    }
+
+    .wd-popup-sidebar {
+        width: 100%;
+        flex: 0 0 auto;
+        max-height: 45vh;
+        border-left: none;
+        border-top: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .wd-popup-viewer {
+        min-height: 50vh;
+    }
+}

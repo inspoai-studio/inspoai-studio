@@ -1,0 +1,110 @@
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: calc(72px + env(safe-area-inset-bottom));
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 15px calc(12px + env(safe-area-inset-bottom));
+    z-index: 2000;
+    display: none;
+    /* Hidden by default, shown via media query */
+}
+
+@media (max-width: 768px) {
+    /* Old bottom-nav is replaced by the top-notch-bar moved to the bottom */
+    .bottom-nav {
+        display: none !important;
+    }
+}
+
+
+/* Hide navigation when full-screen modals are open */
+body.website-popup-open .bottom-nav,
+body.ui-panel-open .bottom-nav,
+body.modal-open .bottom-nav {
+    display: none !important;
+}
+
+.bottom-nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    padding: 8px 0;
+    gap: 4px;
+    transition: all 0.2s ease;
+    position: relative;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.bottom-nav-icon-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bottom-nav-icon {
+    width: 24px;
+    height: 24px;
+    opacity: 0.5;
+    transition: all 0.2s ease;
+    filter: grayscale(1);
+}
+
+.bottom-nav-item.active .bottom-nav-icon {
+    opacity: 1;
+    filter: none;
+    transform: translateY(-2px);
+}
+
+.bottom-nav-label {
+    font-size: 10px;
+    font-weight: 500;
+    color: #888;
+    font-family: var(--font-sans);
+    transition: all 0.2s ease;
+}
+
+.bottom-nav-item.active .bottom-nav-label {
+    color: #000;
+    font-weight: 700;
+    transform: scale(1.05);
+}
+
+.bottom-nav-badge {
+    position: absolute;
+    top: -5px;
+    right: -8px;
+    background: #000;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 5px;
+    border-radius: 10px;
+    min-width: 14px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Subtle active indicator */
+.bottom-nav-item.active::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 20%;
+    height: 2px;
+    background: #000;
+    border-radius: 0 0 2px 2px;
+}

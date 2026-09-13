@@ -1,0 +1,507 @@
+/* src/styles/MoodboardLibrary.css */
+.moodboard-library {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 40px;
+  font-family: var(--font-sans);
+}
+
+.moodboard-library h1 {
+  font-size: 24px !important;
+  margin-bottom: 30px;
+  color: #111 !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+  font-family: var(--font-sans) !important;
+}
+
+.moodboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+.moodboard-card {
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  overflow: visible;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid #f0f0f0;
+}
+
+.moodboard-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.moodboard-preview {
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  border-radius: 20px 20px 0 0;
+}
+
+.moodboard-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.moodboard-preview:hover img {
+  transform: scale(1.08);
+}
+
+.placeholder-img {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fafafa;
+}
+
+.moodboard-info {
+  padding: 20px;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.moodboard-info h3 {
+  margin: 0 0 12px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.moodboard-stats {
+  display: flex;
+  gap: 20px;
+  font-size: 13px;
+  color: #888;
+  font-weight: 500;
+}
+
+.moodboard-stats span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.moodboard-actions {
+  padding: 15px 20px;
+  display: flex;
+  gap: 12px;
+}
+
+.action-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 1px solid #eee;
+  cursor: pointer;
+  color: #555;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+}
+
+.action-button:hover {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+  transform: scale(1.05);
+}
+
+.action-button svg {
+  width: 18px;
+  height: 18px;
+}
+
+.action-button.delete:hover {
+  background-color: #ff3b30;
+  border-color: #ff3b30;
+}
+
+.action-button.public {
+  color: #34c759;
+}
+
+.action-button.private {
+  color: #ff9500;
+}
+
+/* Modal Styling Overhaul */
+.moodboard-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.moodboard-modal {
+  background-color: white;
+  border-radius: 24px;
+  width: 90%;
+  max-width: 600px;
+  /* Smaller for edit title */
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 35px;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.moodboard-modal.full-width {
+  max-width: 1000px;
+}
+
+.close-modal {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  background: #f5f5f5;
+  border: none;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  color: #555;
+}
+
+.close-modal:hover {
+  background-color: #000;
+  color: #fff;
+  transform: rotate(90deg);
+}
+
+.moodboard-modal h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #000;
+  letter-spacing: -0.5px;
+}
+
+.modal-stats {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 30px;
+  color: #888;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.modal-images-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.modal-image {
+  height: 180px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #f0f0f0;
+}
+
+.modal-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.edit-moodboard-form {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.form-group {
+  margin-bottom: 30px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 12px;
+  font-weight: 600;
+  color: #555;
+  font-size: 14px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 18px;
+  border: 1px solid #eee;
+  border-radius: 16px;
+  font-size: 16px;
+  font-family: var(--font-sans);
+  background-color: #fafafa;
+  transition: all 0.2s ease;
+  color: #000;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #000;
+  background-color: #fff;
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.05);
+}
+
+.modal-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+  margin-top: 40px;
+}
+
+.modal-actions button {
+  padding: 14px 28px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 15px;
+  font-family: var(--font-sans);
+  transition: all 0.3s ease;
+}
+
+.cancel-button {
+  background-color: #f5f5f5;
+  color: #555;
+}
+
+.cancel-button:hover {
+  background-color: #eee;
+  color: #000;
+}
+
+.save-button {
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.save-button:hover {
+  background-color: #222;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.save-button:active {
+  transform: translateY(0);
+}
+
+/* Loading/Empty States */
+.empty-library {
+  padding: 100px 40px;
+  background: #fff;
+  border-radius: 24px;
+  border: 1px dashed #ddd;
+}
+
+.empty-library h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 15px;
+}
+
+/* ─── Share Link Popover ─── */
+.share-popover-container {
+  position: relative;
+}
+
+.action-button.active {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+.share-link-popover {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: -6px;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 14px;
+  padding: 14px;
+  width: 340px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
+  z-index: 100;
+  animation: popoverSlideIn 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: var(--font-sans);
+}
+
+.share-link-popover::after {
+  content: '';
+  position: absolute;
+  bottom: -7px;
+  left: 22px;
+  transform: rotate(45deg);
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-right: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+@keyframes popoverSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.share-popover-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.share-popover-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #000;
+  letter-spacing: -0.2px;
+}
+
+.share-popover-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #999;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  transition: color 0.15s ease;
+}
+
+.share-popover-close:hover {
+  color: #000;
+}
+
+.share-popover-url-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.share-popover-input {
+  flex: 1;
+  padding: 9px 12px;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  font-size: 12.5px;
+  font-family: 'SF Mono', 'Menlo', monospace;
+  color: #444;
+  background: #fafafa;
+  outline: none;
+  min-width: 0;
+  transition: border-color 0.15s ease;
+}
+
+.share-popover-input:focus {
+  border-color: #000;
+  background: #fff;
+}
+
+.share-popover-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  border: 1px solid #e5e5e5;
+  background: #fff;
+  cursor: pointer;
+  color: #555;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.share-popover-btn:hover {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+.share-popover-btn.copy.copied {
+  background: #16a34a;
+  color: #fff;
+  border-color: #16a34a;
+}
+
+.share-popover-btn.open {
+  color: #555;
+}
+
+/* ── Align layout of MoodboardLibrary with MoodboardPreview ── */
+.content-area--topbar .moodboard-library {
+  padding: 20px;
+  padding-top: 120px;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* ── Mobile Layout resets ── */
+@media (max-width: 768px) {
+  .content-area--topbar .moodboard-preview-page,
+  .content-area--topbar .moodboard-library {
+    padding-top: 40px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
