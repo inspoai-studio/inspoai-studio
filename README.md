@@ -47,12 +47,15 @@ Explore visual references, collaborate on real-time moodboards, scan brand desig
 
 ---
 
-<table>
-  <tr>
-    <td><img width="389" height="486" alt="Inspo AI Studio interface" src="https://github.com/user-attachments/assets/2210de14-7be4-4b32-9eed-e31d8cdbf88c" /></td>
-    <td><img width="1542" height="1927" alt="Agentic UI generation view" src="https://github.com/user-attachments/assets/3c54c2ff-2a8f-42fa-b7dd-bc58bdb8dd7d" /></td>
-  </tr>
-</table>
+<details>
+<summary>Agentic UI — prompt to UI</summary>
+<img width="389" height="486" alt="Inspo AI Studio interface" src="https://github.com/user-attachments/assets/2210de14-7be4-4b32-9eed-e31d8cdbf88c" />
+</details>
+
+<details>
+<summary>AI UI usually looks smart</summary>
+<img width="1542" height="1927" alt="Agentic UI generation view" src="https://github.com/user-attachments/assets/3c54c2ff-2a8f-42fa-b7dd-bc58bdb8dd7d" />
+</details>
 
 ---
 
