@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Inspo AI Studio — Unified Monorepo for Frontend and Backend",
   "private": true,
-  "license": "Apache-2.0",
+  "license": "PolyForm-Noncommercial-1.0.0",
   "workspaces": [
     "frontend",
     "backend"
