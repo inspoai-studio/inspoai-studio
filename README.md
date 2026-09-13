@@ -11,6 +11,8 @@
 
 Explore visual references, collaborate on real-time moodboards, scan brand design systems, and generate production-ready React components with AI.
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/bPSyjoKeM8s?si=3-2o9cBJBple3zkt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](./LICENSE)
 [![Node.js](https://img.shields.io/badge/Node.js-%3E%3D20.18-brightgreen.svg)](https://nodejs.org)
 [![Vite](https://img.shields.io/badge/Vite-6.x-646CFF.svg)](https://vitejs.dev/)
