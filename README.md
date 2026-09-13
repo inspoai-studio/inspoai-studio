@@ -2,9 +2,10 @@
 
 # Inspo AI Studio
 
-<h1 style={{ fontWeight: 700 }}>
-  The Open-Source Design Intelligence, UI and Web Generation & Agentic UI Platform
-</h1>
+<p>
+  <strong>The Source-Available Design Intelligence, UI and Web Generation &amp; Agentic UI Platform</strong>
+</p>
+
 <h3>
   <a href="https://www.inspoai.io/">Visit Inspoai</a>
 </h3>
@@ -15,16 +16,23 @@ Explore visual references, collaborate on real-time moodboards, scan brand desig
   <img src="https://img.youtube.com/vi/bPSyjoKeM8s/maxresdefault.jpg" width="560" alt="Inspo AI Studio demo">
 </a>
 
-[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](./LICENSE)
+[![License](https://img.shields.io/badge/License-PolyForm_Noncommercial_1.0.0-orange.svg)](./LICENSE)
+[![Commercial Use](https://img.shields.io/badge/Commercial_Use-License_Required-red.svg)](#-license--permitted-use)
 [![Node.js](https://img.shields.io/badge/Node.js-%3E%3D20.18-brightgreen.svg)](https://nodejs.org)
 [![Vite](https://img.shields.io/badge/Vite-6.x-646CFF.svg)](https://vitejs.dev/)
 [![React](https://img.shields.io/badge/React-18-61DAFB.svg)](https://react.dev/)
 [![Supabase](https://img.shields.io/badge/Supabase-Realtime_%26_Vector-3ECF8E.svg)](https://supabase.com)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
 
-[Features](#-key-features) • [Quickstart](#-quickstart) • [Database Setup](#-1-click-database-setup) • [Architecture](#-monorepo-architecture) • [Contributing](#-contributing)
+[Features](#-key-features) • [Quickstart](#-quickstart) • [Database Setup](#-1-click-database-setup) • [Architecture](#-monorepo-architecture) • [License](#-license--permitted-use) • [Contributing](#-contributing)
 
 </div>
+
+---
+
+> [!IMPORTANT]
+> **This project is not licensed for commercial use.**
+> Inspo AI Studio is source-available under the [PolyForm Noncommercial License 1.0.0](./LICENSE). You may read, run, modify, and share it for personal projects, learning, research, and use by charitable or nonprofit organisations. You may **not** use it — or anything derived from it — in a product, service, or internal tool that supports commercial activity. See [License & Permitted Use](#-license--permitted-use) for the full picture, or email **farhan@inspoai.io** for a commercial licence.
 
 ---
 
@@ -36,6 +44,48 @@ Explore visual references, collaborate on real-time moodboards, scan brand desig
 - **Titan Brand Scanner**: Deep website scanner that extracts complete design systems in seconds — typography, color palettes, spacing tokens, logos, and UI component screenshots.
 - **Native Model Context Protocol (MCP)**: Built-in MCP server (`/api/mcp/sse`) allowing Claude Desktop, Cursor, and IDE coding agents to search design references and pull components directly into their context.
 - **Battle-Tested Security**: Comprehensive Row-Level Security (RLS), SSRF protection on scrapers, and automated input safety moderation.
+
+---
+
+<table>
+  <tr>
+    <td><img width="389" height="486" alt="Inspo AI Studio interface" src="https://github.com/user-attachments/assets/2210de14-7be4-4b32-9eed-e31d8cdbf88c" /></td>
+    <td><img width="1542" height="1927" alt="Agentic UI generation view" src="https://github.com/user-attachments/assets/3c54c2ff-2a8f-42fa-b7dd-bc58bdb8dd7d" /></td>
+    <td><img width="1542" height="1927" alt="Brand scanner results" src="https://github.com/user-attachments/assets/19c86064-886c-4647-b740-09dcd61503f0" /></td>
+  </tr>
+</table>
+
+---
+
+## License & Permitted Use
+
+Inspo AI Studio is **source-available, not open source**. It is licensed under the [PolyForm Noncommercial License 1.0.0](./LICENSE).
+
+### You may
+
+- Run the software for personal projects and private experimentation
+- Read, study, and modify the source code
+- Use it for teaching, coursework, academic research, and publication
+- Use it inside a registered charitable or nonprofit organisation
+- Fork it and share your changes, provided the same licence and this notice travel with the copy
+
+### You may not
+
+- Use the software, or any derivative of it, in a commercial product or service
+- Run it as internal tooling at a for-profit company, including on internal-only deployments
+- Offer it — hosted, white-labelled, rebranded, or embedded — to paying customers
+- Use it to deliver paid client work, freelance or agency
+- Resell, sublicense, or redistribute it commercially in any form
+
+**Commercial use requires a separate licence.** We grant them, and the process is short. Email **farhan@inspoai.io** with a sentence on what you're building and we'll come back with terms.
+
+### Why not open source?
+
+"Open source" has a specific meaning under the OSI definition, and any licence restricting commercial use falls outside it. Calling this project source-available is the accurate description. Everything is readable, forkable, and modifiable — the only restriction is commercial exploitation.
+
+### Contributions
+
+By opening a pull request, you agree your contribution is licensed under the same terms and that Inspo AI may also offer it under a commercial licence. See [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ---
 
@@ -66,7 +116,7 @@ inspoai-studio/
 │   └── .env.example            # Server environment configuration
 │
 ├── .github/                    # CI workflows, Issue & PR templates
-├── LICENSE                     # Apache 2.0 Open Source License
+├── LICENSE                     # PolyForm Noncommercial License 1.0.0
 ├── CONTRIBUTING.md             # Developer contribution guidelines
 ├── CODE_OF_CONDUCT.md          # Community guidelines
 └── package.json                # Monorepo root workspace commands
@@ -151,8 +201,12 @@ We welcome contributions from the design and developer community! Please review 
 - [Code of Conduct](./CODE_OF_CONDUCT.md)
 - [Security Policy](./SECURITY.md)
 
+Contributions are accepted under the same noncommercial licence as the project — see [Contributions](#contributions) above.
+
 ---
 
 ## License
 
-Inspo AI Studio is open-source software licensed under the [Apache License, Version 2.0](./LICENSE).
+Inspo AI Studio is source-available under the [PolyForm Noncommercial License 1.0.0](./LICENSE). **Commercial use is not permitted without a separate licence**.
+
+Copyright © 2026 Inspo AI. All rights reserved.
