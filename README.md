@@ -51,7 +51,6 @@ Explore visual references, collaborate on real-time moodboards, scan brand desig
   <tr>
     <td><img width="389" height="486" alt="Inspo AI Studio interface" src="https://github.com/user-attachments/assets/2210de14-7be4-4b32-9eed-e31d8cdbf88c" /></td>
     <td><img width="1542" height="1927" alt="Agentic UI generation view" src="https://github.com/user-attachments/assets/3c54c2ff-2a8f-42fa-b7dd-bc58bdb8dd7d" /></td>
-    <td><img width="1542" height="1927" alt="Brand scanner results" src="https://github.com/user-attachments/assets/19c86064-886c-4647-b740-09dcd61503f0" /></td>
   </tr>
 </table>
 
